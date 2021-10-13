@@ -7,6 +7,6 @@ namespace Access_API
 {
     public class SearchResults
     {
-        List<SearchResult> result;
+        public List<SearchResult> result;
     }
 }
