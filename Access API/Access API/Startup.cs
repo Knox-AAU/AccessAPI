@@ -72,7 +72,7 @@ namespace Access_API
                 });
             }
 
-            app.UsePathBase(Microsoft.AspNetCore.Http.PathString.FromUriComponent("/api"));
+            //app.UsePathBase(Microsoft.AspNetCore.Http.PathString.FromUriComponent("/api"));
 
             //app.UseHttpsRedirection();
 
