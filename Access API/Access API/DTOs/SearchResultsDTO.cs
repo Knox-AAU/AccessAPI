@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace Access_API
 {
-    public class SearchResults
+    public class SearchResultsDTO
     {
-        public List<SearchResult> result;
+        public List<SearchResultDTO> result;
     }
 }
