@@ -10,19 +10,20 @@ namespace Access_API.Controllers
 {
     [Route("api/search")]
     [ApiController]
-    public class searchController : ControllerBase
+  
+    public class SearchController : ControllerBase
     {
+        BLL.SearchBLL sb = new BLL.SearchBLL();
+
         [HttpGet]       // 127.0.0.1:8081/api/search?input=test&sources=Nordjyske,Grundfoss
         public string Get([FromQuery] string input, [FromQuery] string sources)
         {
-            BLL.SearchBLL sb = new BLL.SearchBLL();
-            string result = JsonConvert.SerializeObject(sb.searchBLL(input, sources));
+            Console.Write("HER");
+            string result = JsonConvert.SerializeObject(sb.searchBLL(input, sources));  
 
             return result;
         }
-    }
-
-    
+    }   
 }
 
 
