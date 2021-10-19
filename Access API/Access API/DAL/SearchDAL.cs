@@ -20,7 +20,6 @@ namespace Access_API.DAL
             {
                 json = sr.ReadToEnd();
             }
-
             SearchResultsDTO results = JsonConvert.DeserializeObject<SearchResultsDTO>(json.ToString());
             return results;
         }

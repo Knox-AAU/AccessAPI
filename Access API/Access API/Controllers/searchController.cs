@@ -18,9 +18,8 @@ namespace Access_API.Controllers
         [HttpGet]       // 127.0.0.1:8081/api/search?input=test&sources=Nordjyske,Grundfoss
         public string Get([FromQuery] string input, [FromQuery] string sources)
         {
-            Console.Write("HER");
+           
             string result = JsonConvert.SerializeObject(sb.searchBLL(input, sources));  
-
             return result;
         }
     }   
