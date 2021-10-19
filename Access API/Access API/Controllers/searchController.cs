@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Access_API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/search")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "Knox search endpoints")]
     public class SearchController : ControllerBase
