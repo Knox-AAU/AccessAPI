@@ -7,8 +7,9 @@ using Access_API.BLL;
 
 namespace Access_API.Controllers
 {
-    [Route("api/file")]
+    [Route("api/getpdf")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "Knox filetransfer endpoints")]
     public class FileController : Controller
     {
         FileBLL fileBLL = new FileBLL();
