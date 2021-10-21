@@ -2,11 +2,9 @@ name: tests
 
 on:
   push:
+    branches: [master, main]
   pull_request:
-    branches: [ main ]
-    paths:
-    - '**.cs'
-    - '**.csproj'
+    branches: [master, main]
 
 env:
   DOTNET_VERSION: '5.0.301' # The .NET SDK version to use
