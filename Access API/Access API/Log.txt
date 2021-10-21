@@ -1,0 +1,32 @@
+200: {"result":[{"title":"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen","filepath":"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml","score":0.579903985789051}]}
+200: null
+200: {"result":[{"title":"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen","filepath":"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml","score":0.579903985789051}]}
+200: null
+200: {"result":[{"title":"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen","filepath":"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml","score":0.579903985789051}]}
+200: null
+200: {"result":[{"title":"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen","filepath":"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml","score":0.579903985789051}]}
+200: null
+200: {"result":[{"title":"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen","filepath":"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml","score":0.579903985789051}]}
+200: null
+200: Microsoft.AspNetCore.HttpSys.Internal.HeaderCollection {"result":[{"title":"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen","filepath":"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml","score":0.579903985789051}]}
+200: Microsoft.AspNetCore.HttpSys.Internal.HeaderCollection null
+200: System.IO.MemoryStream {"result":[{"title":"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen","filepath":"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml","score":0.579903985789051}]}
+200: System.IO.MemoryStream null
+200: System.IO.MemoryStream {"result":[{"title":"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen","filepath":"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml","score":0.579903985789051}]}
+200: System.IO.MemoryStream null
+200: text/plain; charset=utf-8 {"result":[{"title":"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen","filepath":"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml","score":0.579903985789051}]}
+200: text/plain; charset=utf-8 null
+200: ::1
+200: ::1
+200: ::1
+200: ::1
+200: ::1
+200: ::1
+200: ::1: {"result":[{"title":"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen","filepath":"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml","score":0.579903985789051}]}
+200: ::1: {"result":[{"title":"Sine blev sendt i kr??ftbehandling p?? Rigshospitalet. Hun kom glad hjem igen","id":0,"score":0.579903985789051}]}
+200: ::1: Access_API.Controllers.TestController.Get (Access API): 20-10-2021 09:56:39 {"result":[{"title":"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen","filepath":"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml","score":0.579903985789051}]}
+200: ::1: Access_API.Controllers.SearchController.Get (Access API): 20-10-2021 09:56:39 {"result":[{"title":"Sine blev sendt i kr??ftbehandling p?? Rigshospitalet. Hun kom glad hjem igen","id":0,"score":0.579903985789051}]}
+200: ::1: Access_API.Controllers.TestController.Get (Access API): 20-10-2021 10:03:29
+200: ::1: Access_API.Controllers.SearchController.Get (Access API): 20-10-2021 10:03:29
+200: ::1: Access_API.Controllers.TestController.Get (Access API): 21-10-2021 07:47:50
+200: ::1: Access_API.Controllers.SearchController.Get (Access API): 21-10-2021 07:47:50

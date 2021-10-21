@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Access_API.Middleware;
 
 namespace Access_API
 {
@@ -91,6 +92,8 @@ namespace Access_API
             //app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseMiddleware<MiddlewareLogger>();
 
             app.UseAuthorization();
 
