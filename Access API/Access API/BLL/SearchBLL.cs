@@ -13,7 +13,7 @@ namespace Access_API.BLL
     {
         public SearchResultsDTO searchBLL(string input, string sources)
         {
-            string url = $"http://localhost:8082/api/test";
+            string url = $"http://localhost:3030/search?input={input}&sources={sources}";
             DAL.SearchDAL DAL = new DAL.SearchDAL();
 
             return DAL.searchDAL(url);

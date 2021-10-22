@@ -17,7 +17,7 @@ namespace Access_API.DAL
         {
             List<byte> bytes = new List<byte>();
 
-            HttpWebResponse response = Drivers.HttpRequest.getRequest($"http://localhost:5000/file/{id}");
+            HttpWebResponse response = Drivers.HttpRequest.getRequest($"http://localhost:8081/api/test");
             if(true /*response.ContentType == "PDF"*/) 
             {
                 using (StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.ASCII))

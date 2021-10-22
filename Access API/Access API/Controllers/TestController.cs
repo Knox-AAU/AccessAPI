@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,17 +13,12 @@ namespace Access_API.Controllers
     public class TestController : ControllerBase
     {
         [HttpGet]       // 127.0.0.1:8081/api/search?input=test&sources=Nordjyske,Grundfoss
-        public string Get()
+        public IActionResult Get(int id)
         {
-            return "{" +
-   "\"result\":[" +
-      "{" +
-                "\"title\":\"Sine blev sendt i kræftbehandling på Rigshospitalet. Hun kom glad hjem igen\"," +
-         "\"filepath\":\"/mnt/data/srv/data/newsarchive/2020-12-04/TabletXML/00_12_2-_sektion_fre_s012_02_nordjyll_0412_202012040000_1014942548.xml\"," +
-        "\"score\":0.579903985789051" +
-      "}" +
-   "]" +
-"}";
+            byte[] bytes = System.IO.File.ReadAllBytes("D:\\solutions.pdf");
+            Stream stream = new MemoryStream(bytes);
+            return new FileStreamResult(stream, "application/pdf");
+
         }
     }
 }

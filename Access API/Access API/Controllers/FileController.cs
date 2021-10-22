@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Access_API.BLL;
+using System.IO;
 
 namespace Access_API.Controllers
 {
@@ -15,9 +16,10 @@ namespace Access_API.Controllers
         FileBLL fileBLL = new FileBLL();
         
         [HttpGet]
-        public List<byte> Get([FromQuery] int id)
+        public IActionResult Get([FromQuery] int id)
         {
-            return fileBLL.fileBLL(id);
+            Stream stream = new MemoryStream(fileBLL.fileBLL(id).ToArray());
+            return new FileStreamResult(stream, "application/pdf");
         }
     }
 }
