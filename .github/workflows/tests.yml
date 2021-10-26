@@ -1,37 +1,30 @@
-name: tests
+name: Tests
 
 on:
   push:
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
-    paths:
-    - '*/AccessAPI.sln'
-    - '**.csproj'
-
-env:
-  DOTNET_VERSION: '5.0.301' # The .NET SDK version to use
+    branches: [ master ]
 
 jobs:
-  build-and-test:
+  build:
 
-    name: build-and-test-${{matrix.os}}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ windows-latest]
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
+    - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
-
-    - name: Install dependencies
-      run: dotnet restore
-      
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore WordCount
+    - name: Build
+      run: dotnet build --no-restore WordCount
+    - name: Test
+      run: dotnet test --no-build --verbosity normal WordCount
     - name: Build
       run: dotnet build --configuration Release --no-restore
     
-    - name: Test
+    - name: Tests
       run: dotnet test --no-restore --verbosity normal
