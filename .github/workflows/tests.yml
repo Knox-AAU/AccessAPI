@@ -27,12 +27,12 @@ jobs:
 
     - name: Install dependencies
       run: dotnet restore
-      working-directory: "./Access API"
+      working-directory: ./Access\A API
       
     - name: Build
       run: dotnet build --configuration Release --no-restore
-      working-directory: "./Access API"
+      working-directory: ./Access\A API
     
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-      working-directory: "./Access API"
+      working-directory: ./Access\A API
