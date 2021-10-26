@@ -2,11 +2,9 @@ name: tests
 
 on:
   push:
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
-    paths:
-    - '../AccessAPI/AccessAPI'
-    - '**.csproj'
+    branches: [ master ]
 
 env:
   DOTNET_VERSION: '5.0.301' # The .NET SDK version to use
@@ -29,9 +27,12 @@ jobs:
 
     - name: Install dependencies
       run: dotnet restore
+      working-directory: ./AccessAPI
       
     - name: Build
       run: dotnet build --configuration Release --no-restore
+      working-directory: ./AccessAPI
     
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+      working-directory: ./AccessAPI
