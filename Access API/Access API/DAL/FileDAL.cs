@@ -17,9 +17,7 @@ namespace Access_API.DAL
         {
             List<byte> bytes = new List<byte>();
 
-            HttpWebResponse response = Drivers.HttpRequest.getRequest($"http://localhost:8081/api/test");
-            if(true /*response.ContentType == "PDF"*/) 
-            {
+            HttpWebResponse response = Drivers.HttpRequest.getRequest(Urls.fileTransferUrl + $"/file/{id}");
                 using (StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
                 {
                     using (MemoryStream ms = new MemoryStream())
@@ -30,7 +28,6 @@ namespace Access_API.DAL
                         bytes.AddRange(b);
                     }
                 }
-            }
             return bytes;
         }
     }
