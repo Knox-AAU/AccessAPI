@@ -16,7 +16,7 @@ namespace Access_API.BLL
             string url = Urls.searchUrl + $"/search?input={input}&sources={sources}";
             DAL.SearchDAL DAL = new DAL.SearchDAL();
 
-            return DAL.searchDAL(url);
+            return DAL.GetSearchResults(url);
         }
     }
 }

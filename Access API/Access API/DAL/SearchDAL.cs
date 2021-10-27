@@ -12,7 +12,7 @@ namespace Access_API.DAL
 {
     public class SearchDAL
     {
-        public SearchResultsDTO searchDAL(string url)
+        public SearchResultsDTO GetSearchResults(string url)
         {
             string json = null;
             HttpWebResponse response = Drivers.HttpRequest.getRequest(url);

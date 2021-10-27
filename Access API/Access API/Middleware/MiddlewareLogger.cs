@@ -15,6 +15,7 @@ namespace Access_API.Middleware
 {
     public class MiddlewareLogger
     {
+        static int _internalId = 0;
         private readonly RequestDelegate _next;
 
         public MiddlewareLogger(RequestDelegate next)
@@ -24,20 +25,29 @@ namespace Access_API.Middleware
 
         public async Task Invoke(HttpContext context)
         {
+            int id = _internalId++;
+            using StreamWriter file = new("Log.txt", append: true);
             var request = await GetRequest(context.Request); // Get incomming request and formats it
-
+            file.WriteLine($"ID: {id}, {request}");
             var bodyStream = context.Response.Body;
 
             using var responseBody = new MemoryStream();
 
             context.Response.Body = responseBody;
 
-            await _next(context);
+            try
+            {
+                await _next(context);
+            }
+            catch(Exception ex)
+            {
+                file.WriteLine($"ID: {id}, {request}, {ex}");
+            }
+            
 
             var response = await GetResponse(context.Response); // Get response from server and formats it 
 
-            using StreamWriter file = new("Log.txt", append: true);
-            await file.WriteLineAsync(response);                
+            await file.WriteLineAsync($"ID: {id}, {response}");                
 
             await responseBody.CopyToAsync(bodyStream);
         }
@@ -55,7 +65,7 @@ namespace Access_API.Middleware
 
             request.Body = body;
 
-            return $"{request.Scheme} {request.Host}{request.Path} {request.QueryString} {bodyAsText}";
+            return $"{request.HttpContext.Connection.RemoteIpAddress}, {DateTime.UtcNow}, {request.Path}, {bodyAsText}";
         }
 
         private static async Task<string> GetResponse(HttpResponse response)
@@ -66,8 +76,7 @@ namespace Access_API.Middleware
 
             response.Body.Seek(0, SeekOrigin.Begin); // Resests the reader
             
-            return $"{response.StatusCode}: {response.HttpContext.Connection.RemoteIpAddress}: " +
-                $"{response.HttpContext.GetEndpoint()}: {DateTime.UtcNow}";
+            return $"{response.HttpContext.Connection.RemoteIpAddress}, {DateTime.UtcNow}, {response.StatusCode}, {response.HttpContext.Request.Path}";
         }
     }
 }

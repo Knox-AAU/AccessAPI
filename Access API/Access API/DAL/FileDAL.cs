@@ -13,7 +13,7 @@ namespace Access_API.DAL
 {
     public class FileDAL
     {
-        public List<byte> fileDAL(int id) 
+        public List<byte> GetFile(int id) 
         {
             List<byte> bytes = new List<byte>();
 

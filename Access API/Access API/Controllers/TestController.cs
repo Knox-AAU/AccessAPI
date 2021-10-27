@@ -20,5 +20,15 @@ namespace Access_API.Controllers
             return new FileStreamResult(stream, "application/pdf");
 
         }
+        [Route("WaitInMs")]
+        [HttpGet]
+        public void WaitInMs(int milliseconds)
+        {
+            DateTime dateTime = DateTime.UtcNow;
+            TimeSpan ts = new TimeSpan(0, 0, 0, 0, milliseconds);
+            while (DateTime.UtcNow - dateTime <= ts) ;
+            HttpContext.Response.StatusCode = 200;
+        }
+
     }
 }

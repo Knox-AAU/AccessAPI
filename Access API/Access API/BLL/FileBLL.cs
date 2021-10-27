@@ -11,7 +11,7 @@ namespace Access_API.BLL
         FileDAL fileDAL = new FileDAL();
         public List<byte> fileBLL(int id) 
         {
-            return fileDAL.fileDAL(id);
+            return fileDAL.GetFile(id);
         }
     }
 }

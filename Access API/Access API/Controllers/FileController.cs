@@ -18,8 +18,16 @@ namespace Access_API.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] int id)
         {
-            Stream stream = new MemoryStream(fileBLL.fileBLL(id).ToArray());
-            return new FileStreamResult(stream, "application/pdf");
+            try
+            {
+                Stream stream = new MemoryStream(fileBLL.fileBLL(id).ToArray());
+                return new FileStreamResult(stream, "application/pdf");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500);
+            }
+
         }
     }
 }
