@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 /*
 * PURPOSE: Logs traffic through the Access API. 
@@ -15,6 +16,7 @@ namespace Access_API.Middleware
 {
     public class MiddlewareLogger
     {
+        string path = AppDomain.CurrentDomain.BaseDirectory;
         static int _internalId = 0;
         private readonly RequestDelegate _next;
 
@@ -26,7 +28,7 @@ namespace Access_API.Middleware
         public async Task Invoke(HttpContext context)
         {
             int id = _internalId++;
-            using StreamWriter file = new("Log.txt", append: true);
+            using StreamWriter file = new(path + "Log.txt", append: true);
             var request = await GetRequest(context.Request); // Get incomming request and formats it
             file.WriteLine($"ID: {id}, {request}");
             var bodyStream = context.Response.Body;
@@ -47,7 +49,7 @@ namespace Access_API.Middleware
 
             var response = await GetResponse(context.Response); // Get response from server and formats it 
 
-            await file.WriteLineAsync($"ID: {id}, {response}");                
+            await file.WriteLineAsync($"ID: {id}, {response}");
 
             await responseBody.CopyToAsync(bodyStream);
         }

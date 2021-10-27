@@ -1,12 +1,2 @@
-Request: 127.0.0.1, 27/10/2021 08:59:51, /api/test/WaitInMs, 
-Respones: 127.0.0.1, 27/10/2021 09:00:01, 200, /api/test/WaitInMs
-ID: 0, ::1, 27/10/2021 09:03:33, /api/test/WaitInMs, 
-ID: 0, ::1, 27/10/2021 09:03:33, 200, /api/test/WaitInMs
-ID: 1, ::1, 27/10/2021 09:03:51, /api/test/WaitInMs, 
-ID: 1, ::1, 27/10/2021 09:03:51, 200, /api/test/WaitInMs
-ID: 2, ::1, 27/10/2021 09:04:04, /api/getpdf, 
-ID: 2, ::1, 27/10/2021 09:04:04, 500, /api/getpdf
-ID: 3, ::1, 27/10/2021 09:04:45, /api/getpdf, 
-ID: 3, ::1, 27/10/2021 09:04:45, 500, /api/getpdf
-ID: 4, ::1, 27/10/2021 09:05:37, /api/getpdf, 
-ID: 4, ::1, 27/10/2021 09:05:54, 500, /api/getpdf
+ID: 0, ::1, 27/10/2021 11:41:59, /api/test/WaitInMs, 
+ID: 0, ::1, 27/10/2021 11:41:59, 200, /api/test/WaitInMs
