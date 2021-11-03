@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Access_API
 {
-    public class SearchResult
+    public class SearchResultDTO
     {
         public string title;
-        public string filepath;
+        public int id;
         public double score;
     }
 }

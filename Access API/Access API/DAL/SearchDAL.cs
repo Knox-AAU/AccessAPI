@@ -6,16 +6,21 @@ using System.Net;
 using System.Web;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace Access_API.DAL
 {
     public class SearchDAL
     {
-        public SearchResults searchDAL(string url)
+        public SearchResultsDTO GetSearchResults(string url)
         {
-            HttpWebResponse response =  Drivers.HttpRequest.getRequest(url);
-            string json = response.GetResponseStream().ToString();
-            SearchResults results = JsonConvert.DeserializeObject<SearchResults>(json);
+            string json = null;
+            HttpWebResponse response = Drivers.HttpRequest.getRequest(url);
+            using (System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream(), Encoding.ASCII))
+            {
+                json = sr.ReadToEnd();
+            }
+            SearchResultsDTO results = JsonConvert.DeserializeObject<SearchResultsDTO>(json.ToString());
             return results;
         }
     }
