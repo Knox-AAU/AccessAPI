@@ -1,4 +1,4 @@
-name: tests
+name: Continuous Integration
 
 on:
   push:
@@ -23,12 +23,12 @@ jobs:
 
     - name: Install dependencies
       run: dotnet restore
-      working-directory: .\AccessAPI
+      working-directory: ./AccessAPI
       
     - name: Build 
       run: dotnet build --configuration Release
-      working-directory: .\Access\API
+      working-directory: ./AccessAPI
     
     - name: Test
       run: dotnet test 
-      working-directory: .\AccessAPI
+      working-directory: ./AccessAPI
