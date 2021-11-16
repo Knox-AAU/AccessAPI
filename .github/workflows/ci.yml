@@ -23,12 +23,12 @@ jobs:
 
     - name: Install dependencies
       run: dotnet restore
-      working-directory: ./AccessAPI
+      working-directory: ./Access API
       
     - name: Build 
       run: dotnet build --configuration Release
-      working-directory: ./AccessAPI
+      working-directory: ./Access API
     
     - name: Test
       run: dotnet test 
-      working-directory: ./AccessAPI
+      working-directory: ./Access API
