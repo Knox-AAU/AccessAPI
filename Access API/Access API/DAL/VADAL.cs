@@ -11,7 +11,7 @@ namespace Access_API.DAL
 {
     public class VADAL
     {
-        public VAResultsDTO GetVAResults(string url)
+        public VAResultDTO GetVAResults(string url)
         {
             string json = null;
             HttpWebResponse response = Drivers.HttpRequest.getRequest(url);
@@ -19,7 +19,7 @@ namespace Access_API.DAL
             {
                 json = sr.ReadToEnd();
             }
-            VAResultsDTO results = JsonConvert.DeserializeObject<VAResultsDTO>(json.ToString());
+            VAResultDTO results = JsonConvert.DeserializeObject<VAResultDTO>(json.ToString());
             return results;
         }
     }

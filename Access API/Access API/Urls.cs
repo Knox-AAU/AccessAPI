@@ -9,5 +9,6 @@ namespace Access_API
     {
         public static string fileTransferUrl = "http://knox-master01.srv.aau.dk/fileAPI";
         public static string searchUrl = "http://knox-master01.srv.aau.dk/searchAPI";
+        public static string vaUrl = "https://localhost:44323/KnowledgeGraph";
     }
 }

@@ -31,5 +31,44 @@ namespace Access_API.Controllers
             }
             return result;
         }
+
+
+        [HttpGet]
+        [Route("/[controller]/getNode/{id}")]
+
+        public string GetNode(string id)
+        {
+            string result = string.Empty;
+            try
+            {
+                result = JsonConvert.SerializeObject(VAb.vaBLL_getNode(id));
+                HttpContext.Response.StatusCode = 200;
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Response.StatusCode = 500;
+            }
+            return result;
+        }
+
+
+        [HttpGet]
+        [Route("/[controller]/getNodes/{id}")]
+        public string GetNodes(string id)
+        {
+            string result = string.Empty;
+            try
+            {
+                result = JsonConvert.SerializeObject(VAb.vaBLL_getNodes(id));
+                HttpContext.Response.StatusCode = 200;
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Response.StatusCode = 500;
+            }
+            return result;
+        }
+
+
     }
 }
