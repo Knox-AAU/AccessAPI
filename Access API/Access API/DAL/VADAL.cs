@@ -19,8 +19,9 @@ namespace Access_API.DAL
             {
                 json = sr.ReadToEnd();
             }
-            VAResultDTO results = JsonConvert.DeserializeObject<VAResultDTO>(json.ToString());
-            return results;
+            VAResultDTO vares = new();
+            vares.response = json.ToString();
+            return vares;
         }
     }
 }

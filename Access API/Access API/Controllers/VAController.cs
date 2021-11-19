@@ -41,7 +41,7 @@ namespace Access_API.Controllers
             string result = string.Empty;
             try
             {
-                result = JsonConvert.SerializeObject(VAb.vaBLL_getNode(id));
+                result = JsonConvert.SerializeObject(VAb.vaBLL_getNode(id).response);
                 HttpContext.Response.StatusCode = 200;
             }
             catch (Exception ex)
@@ -59,7 +59,7 @@ namespace Access_API.Controllers
             string result = string.Empty;
             try
             {
-                result = JsonConvert.SerializeObject(VAb.vaBLL_getNodes(id));
+                result = JsonConvert.SerializeObject(VAb.vaBLL_getNodes(id).response);
                 HttpContext.Response.StatusCode = 200;
             }
             catch (Exception ex)
