@@ -19,9 +19,9 @@ namespace Access_API.DAL
             {
                 json = sr.ReadToEnd();
             }
-            VAResultDTO vares = new();
-            vares.response = json.ToString();
-            return vares;
+            VAResultDTO vaRes = new();
+            vaRes.response = json.ToString();
+            return vaRes;
         }
     }
 }

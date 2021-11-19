@@ -10,33 +10,16 @@ using Access_API.BLL;
 
 namespace Access_API.Controllers
 {
-    [Route("api/VA")]
+    [Route("api/[controller]")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "Knox Virtual Assistant")]
-    public class VAController : Controller
+    public class VirtualAssistantController : Controller
     {
         VABLL VAb = new VABLL();
+        
         [HttpGet]
-        public string Get([FromQuery] string input)
-        {
-            string result = string.Empty;
-            try
-            {
-                result = JsonConvert.SerializeObject(VAb.vaBLL(input));
-                HttpContext.Response.StatusCode = 200;
-            }
-            catch(Exception ex)
-            {
-                HttpContext.Response.StatusCode = 500;
-            }
-            return result;
-        }
-
-
-        [HttpGet]
-        [Route("/[controller]/getNode/{id}")]
-
-        public string GetNode(string id)
+        [Route("node")]
+        public string GetNode([FromQuery] string id)
         {
             string result = string.Empty;
             try
@@ -53,8 +36,8 @@ namespace Access_API.Controllers
 
 
         [HttpGet]
-        [Route("/[controller]/getNodes/{id}")]
-        public string GetNodes(string id)
+        [Route("nodes")]
+        public string GetNodes([FromQuery]string id)
         {
             string result = string.Empty;
             try
