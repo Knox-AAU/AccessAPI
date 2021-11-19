@@ -16,7 +16,7 @@ namespace Access_API.Controllers
     public class VirtualAssistantController : Controller
     {
         VABLL VAb = new VABLL();
-        
+
         [HttpGet]
         [Route("node")]
         public string GetNode([FromQuery] string id)
@@ -37,7 +37,7 @@ namespace Access_API.Controllers
 
         [HttpGet]
         [Route("nodes")]
-        public string GetNodes([FromQuery]string id)
+        public string GetNodes([FromQuery] string id)
         {
             string result = string.Empty;
             try

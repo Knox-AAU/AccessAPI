@@ -14,7 +14,7 @@ namespace Access_API.Controllers
     public class FileController : Controller
     {
         FileBLL fileBLL = new FileBLL();
-        
+
         [HttpGet]
         public IActionResult Get([FromQuery] int id)
         {
