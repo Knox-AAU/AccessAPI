@@ -13,21 +13,21 @@ namespace Access_API.DAL
 {
     public class FileDAL
     {
-        public List<byte> GetFile(int id) 
+        public List<byte> GetFile(int id)
         {
             List<byte> bytes = new List<byte>();
 
             HttpWebResponse response = Drivers.HttpRequest.getRequest(Urls.fileTransferUrl + $"/file/{id}");
-                using (StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
+            using (StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
+            {
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        sr.BaseStream.CopyTo(ms);
-                        byte[] b = new byte[ms.Length];
-                        b = ms.ToArray();
-                        bytes.AddRange(b);
-                    }
+                    sr.BaseStream.CopyTo(ms);
+                    byte[] b = new byte[ms.Length];
+                    b = ms.ToArray();
+                    bytes.AddRange(b);
                 }
+            }
             return bytes;
         }
     }

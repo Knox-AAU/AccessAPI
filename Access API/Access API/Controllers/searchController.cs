@@ -24,13 +24,11 @@ namespace Access_API.Controllers
                 result = JsonConvert.SerializeObject(sb.searchBLL(input, sources));
                 HttpContext.Response.StatusCode = 200;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 HttpContext.Response.StatusCode = 500;
             }
             return result;
         }
-    }   
+    }
 }
-
-
