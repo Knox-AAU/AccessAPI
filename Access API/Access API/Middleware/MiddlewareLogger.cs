@@ -41,11 +41,11 @@ namespace Access_API.Middleware
             {
                 await _next(context);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 file.WriteLine($"ID: {id}, {request}, {ex}");
             }
-            
+
 
             var response = await GetResponse(context.Response); // Get response from server and formats it 
 
@@ -72,12 +72,12 @@ namespace Access_API.Middleware
 
         private static async Task<string> GetResponse(HttpResponse response)
         {
-            
+
             response.Body.Seek(0, SeekOrigin.Begin); // Reads the response stream
             string text = await new StreamReader(response.Body).ReadToEndAsync();
 
             response.Body.Seek(0, SeekOrigin.Begin); // Resests the reader
-            
+
             return $"{response.HttpContext.Connection.RemoteIpAddress}, {DateTime.UtcNow}, {response.StatusCode}, {response.HttpContext.Request.Path}";
         }
     }
