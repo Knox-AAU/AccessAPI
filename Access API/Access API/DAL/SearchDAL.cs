@@ -16,7 +16,7 @@ namespace Access_API.DAL
         {
             string json = null;
             HttpWebResponse response = Drivers.HttpRequest.getRequest(url);
-            using (System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream(), Encoding.ASCII))
+            using (System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream(), Encoding.UTF8))
             {
                 json = sr.ReadToEnd();
             }
