@@ -9,10 +9,11 @@ namespace Access_API.SignalR
     public class SignalRHandler : Hub
     {
         List<string> connectionId = new List<string>();
-            public async Task SendMessage(string user, string message)
-            {
-                await Clients.All.SendAsync("ReceiveMessage", user, message);
-            }
+        
+        public async Task SendMessage(string user, string message)
+        {
+            await Clients.All.SendAsync("ReceiveMessage", message);
+        }
 
         public async Task AddToGroup(string groupName)
         {
@@ -30,7 +31,8 @@ namespace Access_API.SignalR
 
         public override Task OnConnectedAsync()
         {
-            connectionId.Add( Context.ConnectionId);
+            connectionId.Add(Context.ConnectionId);
+            //Clients.Client(Context.ConnectionId).SendAsync("Welcome to this shittt", "test");
             return base.OnConnectedAsync();
         }
 
@@ -39,6 +41,7 @@ namespace Access_API.SignalR
             connectionId.Remove(Context.ConnectionId);
             return base.OnDisconnectedAsync(exception);
         }
+
 
 
 
