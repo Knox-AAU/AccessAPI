@@ -21,7 +21,7 @@ namespace Access_API
     public class Startup
     {
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
+        readonly string SignalRCors = "_SignalRCors";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -40,8 +40,16 @@ namespace Access_API
                                   {
                                       builder.WithOrigins("http://localhost:8080").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
                                   });
+                options.AddPolicy(name: SignalRCors,
+                                        builder =>
+                                        {
+                                            builder.WithOrigins("http://localhost:3000")
+                                                .AllowAnyHeader()
+                                                .AllowAnyMethod()
+                                                .AllowCredentials();
+                                        });
             });
-           
+
             // services.AddResponseCaching();
             services.AddControllers();
 
@@ -98,7 +106,7 @@ namespace Access_API
 
             app.UseAuthorization();
 
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(SignalRCors);
 
             app.UseEndpoints(endpoints =>
             {
