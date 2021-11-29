@@ -9,9 +9,9 @@ namespace Access_API.SignalR
     public class SignalRHandler : Hub
     {
         List<string> connectionId = new List<string>();
-        public async Task SendMessage(string user, string message)
+        public async Task SendMessage(string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            await Clients.All.SendAsync("ReceiveMessage", message);
         }
 
         public async Task AddToGroup(string groupName)
