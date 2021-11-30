@@ -9,10 +9,47 @@ namespace Access_API.SignalR
     public class SignalRHandler : Hub
     {
         List<string> connectionId = new List<string>();
+        
+       
+        public async Task SuggesterJoin()
+        {
+
+        }
+
+        
         public async Task SendMessage(string message)
         {
             await Clients.All.SendAsync("ReceiveMessage", message);
         }
+
+        public async Task SendGroupMessage(string groupName, string messageTag, string message)
+        {
+
+            switch(messageTag)
+            {
+                case "status":
+                    {
+                        await Clients.Group(groupName).SendAsync("status", message);
+                        break;
+                    }
+                case "suggestionRequest":
+                    {
+                        await Clients.Group(groupName).SendAsync("suggestionRequest", message);
+                        break;
+                    }
+                case "suggestionResponse":
+                    {
+                        await Clients.Group(groupName).SendAsync("suggestionResponse", message);
+                        break;
+                    }
+                default:
+                    {
+                        await Clients.Group(groupName).SendAsync("error", "unsupported messageTag");
+                        break;
+                    }
+            }
+        }
+
 
         public async Task AddToGroup(string groupName)
         {
@@ -30,7 +67,7 @@ namespace Access_API.SignalR
 
         public override Task OnConnectedAsync()
         {
-            connectionId.Add( Context.ConnectionId);
+            connectionId.Add(Context.ConnectionId);
             return base.OnConnectedAsync();
         }
 
