@@ -17,10 +17,10 @@ namespace Access_API.SignalR
             suggestorClientId = Context.ConnectionId;
         }
         
-        public async Task SendMessage(string message)
-        {
-            await Clients.All.SendAsync("ReceiveMessage", message);
-        }
+        //public async Task SendMessage(string message)
+        //{
+        //    await Clients.All.SendAsync("ReceiveMessage", message);
+        //}
 
         public async Task SendGroupMessage(string groupName, string messageTag, string message)
         {
