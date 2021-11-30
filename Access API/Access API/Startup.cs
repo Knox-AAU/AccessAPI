@@ -114,7 +114,7 @@ namespace Access_API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<SignalRHandler>("/ChatHub");
+                endpoints.MapHub<SignalRHandler>("/suggestorHub");
             });
         }
     }

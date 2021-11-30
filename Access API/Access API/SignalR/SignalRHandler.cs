@@ -8,14 +8,12 @@ namespace Access_API.SignalR
 {
     public class SignalRHandler : Hub
     {
-        List<string> connectionId = new List<string>();
-        
+        //List<string> connectionId = new List<string>();
        
         public async Task SuggesterJoin()
         {
 
         }
-
         
         public async Task SendMessage(string message)
         {
@@ -67,17 +65,14 @@ namespace Access_API.SignalR
 
         public override Task OnConnectedAsync()
         {
-            connectionId.Add(Context.ConnectionId);
+            AddToGroup(Context.ConnectionId);
             return base.OnConnectedAsync();
         }
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            connectionId.Remove(Context.ConnectionId);
+            RemoveFromGroup(Context.ConnectionId);
             return base.OnDisconnectedAsync(exception);
         }
-
-
-
     }
 }
