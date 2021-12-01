@@ -8,20 +8,44 @@ using Newtonsoft.Json;
 
 namespace Access_API.SignalR
 {
-    class Test
+
+    class Request
     {
         public string Sentence { get; set; }
         public string OrderBy { get; set; }
-        public int ResultLength { get; set; }
-        public List<string> Results { get; set; }
-        public Test()
+        public int MaxResults { get; set; }
+
+        public Request()
         {
             Sentence = "Hvem er ....";
             OrderBy = "ASC";
-            ResultLength = 5;
-            Results = new List<string>() { "hvem", "hvem er", "hvem er ikke", "hvem er ?", "hvem hvorfor?", };
+            MaxResults = 5;
         }
     }
+    class Response
+    {
+        public int ResultLength { get; set; }
+        public List<Result> Results { get; set; }
+        public Response()
+        {
+            ResultLength = 5;
+            Results = new List<Result>() { 
+                new Result(){Sentence ="hvem", Score = 3.5f },
+                new Result(){Sentence ="hvem er", Score = 3.4f },
+                new Result(){Sentence ="hvem er ikke", Score = 3.0f },
+                new Result(){Sentence ="hvem er ?", Score = 2.9f },
+                new Result(){Sentence ="hvem hvorfor?", Score = 2.5f }};
+        }
+    }
+
+    class Result
+    {
+        public string Sentence { get; set; }
+        public float Score { get; set; }
+    }
+
+
+
     public class SignalRHandler : Hub
     {
         //List<string> connectionId = new List<string>();
@@ -50,7 +74,7 @@ namespace Access_API.SignalR
                 case "suggestionRequest":
                     {
                         await Clients.Group(groupName).SendAsync("suggestionRequest", message);
-                        string s = JsonConvert.SerializeObject(new Test());
+                        string s = JsonConvert.SerializeObject(new Response());
                         await Clients.Group(groupName).SendAsync("suggestionResponse", s);
                         break;
                     }
