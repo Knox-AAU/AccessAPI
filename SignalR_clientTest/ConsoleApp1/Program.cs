@@ -45,12 +45,12 @@ namespace ConsoleApp1
 
             myHub.On<string>("suggestionResponse", param =>
             {
-                Response t = JsonConvert.DeserializeObject<Response>(param);
+                TestResponse t = JsonConvert.DeserializeObject<TestResponse>(param);
                 Console.WriteLine(param);
             });
 
-
-            myHub.InvokeAsync<string>("SendGroupMessage", connection.ConnectionId.ToString(), "suggestionRequest", "HELLO World").ContinueWith(task =>
+            TestRequest tr = new TestRequest() { MaxResults = 5, OrderBy = "ASC", Sentence = "test" };
+            myHub.InvokeAsync<string>("SendGroupMessage", connection.ConnectionId.ToString(), "suggestionRequestTest", JsonConvert.SerializeObject(tr)).ContinueWith(task =>
             {
                 if (task.IsFaulted)
                 {
@@ -73,20 +73,38 @@ namespace ConsoleApp1
             connection.StopAsync();
         }
     }
-    class Response
+    class TestResponse
     {
         public int ResultLength { get; set; }
         public List<Result> Results { get; set; }
-        public Response()
+        public TestResponse()
         {
             ResultLength = 5;
-            Results = new List<Result>();
+            Results = new List<Result>(); //{ 
+            //    new Result(){Sentence ="hvem", Score = 3.5f },
+            //    new Result(){Sentence ="hvem er", Score = 3.4f },
+            //    new Result(){Sentence ="hvem er ikke", Score = 3.0f },
+            //    new Result(){Sentence ="hvem er ?", Score = 2.9f },
+            //    new Result(){Sentence ="hvem hvorfor?", Score = 2.5f }};
         }
     }
-
     class Result
     {
         public string Sentence { get; set; }
         public float Score { get; set; }
+    }
+
+    class TestRequest
+    {
+        public string Sentence { get; set; }
+        public string OrderBy { get; set; }
+        public int MaxResults { get; set; }
+
+        public TestRequest()
+        {
+            Sentence = "Hvem er ....";
+            OrderBy = "ASC";
+            MaxResults = 5;
+        }
     }
 }
