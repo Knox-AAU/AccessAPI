@@ -4,13 +4,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
 
 namespace Access_API.SignalR
 {
+    class Test
+    {
+        public string Sentence { get; set; }
+        public string OrderBy { get; set; }
+        public int ResultLength { get; set; }
+        public List<string> Results { get; set; }
+        public Test()
+        {
+            Sentence = "Hvem er ....";
+            OrderBy = "ASC";
+            ResultLength = 5;
+            Results = new List<string>() { "hvem", "hvem er", "hvem er ikke", "hvem er ?", "hvem hvorfor?", };
+        }
+    }
     public class SignalRHandler : Hub
     {
         //List<string> connectionId = new List<string>();
-        string suggestorClientId;
+        string suggestorClientId = string.Empty;
+        string test = "";
 
         public async Task SuggesterJoin()
         {
@@ -24,7 +40,6 @@ namespace Access_API.SignalR
 
         public async Task SendGroupMessage(string groupName, string messageTag, string message)
         {
-
             switch(messageTag)
             {
                 case "status":
@@ -35,6 +50,8 @@ namespace Access_API.SignalR
                 case "suggestionRequest":
                     {
                         await Clients.Group(groupName).SendAsync("suggestionRequest", message);
+                        string s = JsonConvert.SerializeObject(new Test());
+                        await Clients.Group(groupName).SendAsync("suggestionResponse", s);
                         break;
                     }
                 case "suggestionResponse":
