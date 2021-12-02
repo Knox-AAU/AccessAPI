@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Access_API.Controllers
 {
-    [Route("api/dbstatus")]
+    [Route("api/wordCount")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "Knox WordCount endpoints")]
     public sealed class WordCountController : Controller
