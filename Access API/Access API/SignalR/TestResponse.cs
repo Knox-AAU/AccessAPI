@@ -52,7 +52,7 @@ namespace Access_API.SignalR
         public float Score { get; set; }
     }
 
-    class TestRequest
+    public class TestRequest
     {
         public string Sentence { get; set; }
         public string OrderBy { get; set; }
