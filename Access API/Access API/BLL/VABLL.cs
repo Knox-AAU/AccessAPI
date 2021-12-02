@@ -10,7 +10,7 @@ namespace Access_API.BLL
     {
         public VAResultDTO vaBLL_getNode(string input)
         {
-            string url = Urls.vaUrl + $"/knowledgeGraph/getNode?name={input}";
+            string url = Urls.VaUrl + $"/knowledgeGraph/getNode?name={input}";
 
             VADAL DAL = new VADAL();
 
@@ -19,7 +19,7 @@ namespace Access_API.BLL
 
         public VAResultDTO vaBLL_getNodes(string input)
         {
-            string url = Urls.vaUrl + $"/knowledgeGraph/getNodes?name={input}";
+            string url = Urls.VaUrl + $"/knowledgeGraph/getNodes?name={input}";
             VADAL DAL = new VADAL();
 
             var res = DAL.GetVAResults(url);

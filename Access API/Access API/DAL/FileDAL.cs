@@ -17,7 +17,7 @@ namespace Access_API.DAL
         {
             List<byte> bytes = new List<byte>();
 
-            HttpWebResponse response = Drivers.HttpRequest.getRequest(Urls.fileTransferUrl + $"/file/{id}");
+            HttpWebResponse response = Drivers.HttpRequest.getRequest(Urls.FileTransferUrl + $"/file/{id}");
             using (StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
             {
                 using (MemoryStream ms = new MemoryStream())
