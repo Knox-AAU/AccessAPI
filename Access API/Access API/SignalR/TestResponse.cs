@@ -16,7 +16,8 @@ namespace Access_API.SignalR
             for(int i = 0; i< request.MaxResults ; i++)
             {
                 string s = string.Empty;
-                int wordCnt = new Random().Next(8);
+                int wordCnt = new Random().Next(1, 8);
+
                 for(int j = 0; j < wordCnt ; j++)
                 {
                     s += $"{randomWords[new Random().Next(0, randomWords.Count- 1)]} ";
