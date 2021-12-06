@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +16,9 @@ namespace Access_API.SignalR
         public async Task SuggesterJoin()
         {
             suggestorClientId = Context.ConnectionId;
+            Debug.WriteLine("Here is the suggesterClientid:" + suggestorClientId);
+            await Clients.Group(suggestorClientId).SendAsync("ClientConnect", "Testid");
+            await SendGroupMessage("Testid", "suggestionRequest", "hello");
         }
 
         public async Task SendGroupMessage(string groupName, string messageTag, string message)
@@ -28,7 +32,8 @@ namespace Access_API.SignalR
                     }
                 case "suggestionRequest":
                     {
-                        await Clients.Group(groupName).SendAsync("suggestionRequest", message);
+                        await Clients.Group(suggestorClientId).SendAsync("suggestionRequest", groupName, message);
+                        Debug.WriteLine("test");
                         break;
                     }
                 case "suggestionResponse":
@@ -80,6 +85,11 @@ namespace Access_API.SignalR
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
             await Clients.Client(suggestorClientId).SendAsync("LeaveGroup", groupName);
             Debug.WriteLine($"Remove {Context.ConnectionId} from group: {groupName}");
+        }
+
+        public async Task ReceiveSuggestions(List<(string, int)> results)
+        {
+            Debug.WriteLine("hello" + results);
         }
 
         public override Task OnConnectedAsync()
