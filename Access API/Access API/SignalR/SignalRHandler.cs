@@ -17,12 +17,12 @@ namespace Access_API.SignalR
         {
             suggestorClientId = Context.ConnectionId;
             Debug.WriteLine("Here is the suggesterClientid:" + suggestorClientId);
-            await Clients.Group(suggestorClientId).SendAsync("ClientConnect", "Testid");
-            await SendGroupMessage("Testid", "suggestionRequest", "hello");
+            await Clients.Group(suggestorClientId).SendAsync("suggestionRequest", "testid", "hello");
         }
 
         public async Task SendGroupMessage(string groupName, string messageTag, string message)
         {
+            Debug.WriteLine(groupName + messageTag + message);
             switch(messageTag)
             {
                 case "status":
@@ -32,12 +32,13 @@ namespace Access_API.SignalR
                     }
                 case "suggestionRequest":
                     {
-                        await Clients.Group(suggestorClientId).SendAsync("suggestionRequest", groupName, message);
+                        await Clients.Group(suggestorClientId).SendAsync("suggestionRequest", "testid", "hello");
                         Debug.WriteLine("test");
                         break;
                     }
                 case "suggestionResponse":
                     {
+                        Debug.WriteLine(message);
                         await Clients.Group(groupName).SendAsync("suggestionResponse", message);
                         break;
                     }
@@ -87,9 +88,9 @@ namespace Access_API.SignalR
             Debug.WriteLine($"Remove {Context.ConnectionId} from group: {groupName}");
         }
 
-        public async Task ReceiveSuggestions(List<(string, int)> results)
+        public async Task ReceiveSuggestions(string a)
         {
-            Debug.WriteLine("hello" + results);
+            Debug.WriteLine("suggestion recieved " + a);
         }
 
         public override Task OnConnectedAsync()
