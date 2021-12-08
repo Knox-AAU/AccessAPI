@@ -9,6 +9,7 @@ namespace Access_API.Controllers
     [ApiExplorerSettings(GroupName = "Knox WordCount endpoints")]
     public sealed class WordCountController : Controller
     {
+        [HttpGet]
         [Route("status")]
         public IActionResult GetStatus()
         {
