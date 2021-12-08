@@ -32,12 +32,10 @@ namespace Access_API.SignalR
                 case "suggestionRequest":
                     {
                         await Clients.Group(suggestorClientId).SendAsync("suggestionRequest", groupName, message);
-                        Debug.WriteLine("test" + suggestorClientId.Length);
                         break;
                     }
                 case "suggestionResponse":
                     {
-                        Debug.WriteLine("HERE" + message);
                         await Clients.Group(groupName).SendAsync("suggestionResponse", message);
                         break;
                     }
