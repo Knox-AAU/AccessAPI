@@ -38,21 +38,17 @@ namespace Access_API
             });
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-                                  });
                 options.AddPolicy(name: SignalRCors,
                                         builder =>
                                         {
-                                            builder.WithOrigins("http://localhost:3000", "http://localhost:8000")
-                                                .AllowAnyHeader()
-                                                .AllowAnyMethod()
-                                                .AllowCredentials();
+                                            builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost" || new Uri(origin).Host == "knox-master01.srv.aau.dk").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                                            
+                                            //builder.WithOrigins("http://localhost:3000")
+                                            //    .AllowAnyHeader()
+                                            //    .AllowAnyMethod()
+                                            //    .AllowCredentials();
                                         });
             });
-
             // services.AddResponseCaching();
             services.AddControllers();
 
@@ -109,7 +105,6 @@ namespace Access_API
 
             app.UseAuthorization();
 
-            //app.UseCors(MyAllowSpecificOrigins);
             app.UseCors(SignalRCors);
 
             app.UseEndpoints(endpoints =>
