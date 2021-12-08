@@ -11,13 +11,12 @@ namespace Access_API.SignalR
 
     public class SignalRHandler : Hub
     {
-        string suggestorClientId = string.Empty;
+        static string suggestorClientId = "";
 
         public async Task SuggesterJoin()
         {
             suggestorClientId = Context.ConnectionId;
-            Debug.WriteLine("Here is the suggesterClientid:" + suggestorClientId);
-            await Clients.Group(suggestorClientId).SendAsync("suggestionRequest", "testid", "hello");
+            Debug.WriteLine("Here is the suggesterClientid: " + suggestorClientId);
         }
 
         public async Task SendGroupMessage(string groupName, string messageTag, string message)
@@ -32,13 +31,13 @@ namespace Access_API.SignalR
                     }
                 case "suggestionRequest":
                     {
-                        await Clients.Group(suggestorClientId).SendAsync("suggestionRequest", "testid", "hello");
-                        Debug.WriteLine("test");
+                        await Clients.Group(suggestorClientId).SendAsync("suggestionRequest", groupName, message);
+                        Debug.WriteLine("test" + suggestorClientId.Length);
                         break;
                     }
                 case "suggestionResponse":
                     {
-                        Debug.WriteLine(message);
+                        Debug.WriteLine("HERE" + message);
                         await Clients.Group(groupName).SendAsync("suggestionResponse", message);
                         break;
                     }
