@@ -21,7 +21,6 @@ namespace Access_API.SignalR
 
         public async Task SendGroupMessage(string groupName, string messageTag, string message)
         {
-            Debug.WriteLine(groupName + messageTag + message);
             switch(messageTag)
             {
                 case "status":
@@ -45,6 +44,11 @@ namespace Access_API.SignalR
                             "suggestionResponse",
                             JsonConvert.SerializeObject(new SuggestorSimulator().GenerateTestResponse(
                                 JsonConvert.DeserializeObject<TestRequest>(message))));
+                        break;
+                    }
+                case "evalutateSentence":
+                    {
+                        await Clients.Group(suggestorClientId).SendAsync("evaluateSentence", message);
                         break;
                     }
                 default:

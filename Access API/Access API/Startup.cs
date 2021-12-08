@@ -41,12 +41,12 @@ namespace Access_API
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   builder =>
                                   {
-                                      builder.WithOrigins("http://localhost:8080").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                                      builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
                                   });
                 options.AddPolicy(name: SignalRCors,
                                         builder =>
                                         {
-                                            builder.WithOrigins("http://localhost:3000")
+                                            builder.WithOrigins("http://localhost:3000", "http://localhost:8000")
                                                 .AllowAnyHeader()
                                                 .AllowAnyMethod()
                                                 .AllowCredentials();
@@ -109,6 +109,7 @@ namespace Access_API
 
             app.UseAuthorization();
 
+            //app.UseCors(MyAllowSpecificOrigins);
             app.UseCors(SignalRCors);
 
             app.UseEndpoints(endpoints =>
