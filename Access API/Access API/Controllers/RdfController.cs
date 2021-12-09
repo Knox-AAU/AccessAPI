@@ -12,7 +12,7 @@ namespace Access_API.Controllers
         [Route("status")]
         public IActionResult GetStatus()
         {
-            string query = "SELECT * WHERE { ?a ?b ?c }";
+            const string query = "SELECT * WHERE { ?a ?b ?c }";
 
             HttpWebResponse response = Drivers.HttpRequest.GetRequest($"{Urls.RdfUrl}/{query}");
 
