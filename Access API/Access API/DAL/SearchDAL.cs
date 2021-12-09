@@ -15,7 +15,7 @@ namespace Access_API.DAL
         public SearchResultsDTO GetSearchResults(string url)
         {
             string json = null;
-            HttpWebResponse response = Drivers.HttpRequest.getRequest(url);
+            HttpWebResponse response = Drivers.HttpRequest.GetRequest(url);
             using (System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream(), Encoding.UTF8))
             {
                 json = sr.ReadToEnd();

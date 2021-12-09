@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Access_API.Controllers
@@ -13,7 +12,7 @@ namespace Access_API.Controllers
         [Route("status")]
         public IActionResult GetStatus()
         {
-            HttpWebResponse response = Drivers.HttpRequest.getRequest($"{Urls.WordCountUrl}/status");
+            HttpWebResponse response = Drivers.HttpRequest.GetRequest($"{Urls.WordCountUrl}/status");
 
             return StatusCode((int)response.StatusCode);
         }

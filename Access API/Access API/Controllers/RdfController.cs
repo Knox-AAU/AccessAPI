@@ -3,16 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Access_API.Controllers
 {
-    [Route("api/wordCount")]
+    [Route("api/rdf")]
     [ApiController]
-    [ApiExplorerSettings(GroupName = "Knox WordCount endpoints")]
+    [ApiExplorerSettings(GroupName = "Knox RDF endpoints")]
     public sealed class RdfController : Controller
     {
         [HttpGet]
         [Route("status")]
         public IActionResult GetStatus()
         {
-            HttpWebResponse response = Drivers.HttpRequest.getRequest($"{Urls.RdfUrl}/status");
+            string query = "SELECT * WHERE { ?a ?b ?c }";
+
+            HttpWebResponse response = Drivers.HttpRequest.GetRequest($"{Urls.RdfUrl}/{query}");
 
             return StatusCode((int)response.StatusCode);
         }
