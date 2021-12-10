@@ -43,16 +43,15 @@ namespace Access_API
             //    options.KnownProxies.Add(IPAddress.Parse("130.225.57.27"));
             //});
 
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy(name: SignalRCors,
-            //                            builder =>
-            //                            {
-            //                                builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-            //                                //builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "knox-master01.srv.aau.dk" 
-            //                                //|| new Uri(origin).Host == "localhost").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-            //                            });
-            //});
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: SignalRCors,
+                                        builder =>
+                                        {
+                                            builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "knox-master01.srv.aau.dk"
+                                            || new Uri(origin).Host == "localhost").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                                        });
+            });
 
             services.AddControllers();
 
