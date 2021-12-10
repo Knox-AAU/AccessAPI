@@ -8,8 +8,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.HttpOverrides;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,16 +37,23 @@ namespace Access_API
             {
                 options.EnableDetailedErrors = true;
             });
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: SignalRCors,
-                                        builder =>
-                                        {
-                                            builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "knox-master01.srv.aau.dk" 
-                                            || new Uri(origin).Host == "localhost").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-                                        });
-            });
-            // services.AddResponseCaching();
+
+            //services.Configure<ForwardedHeadersOptions>(options => 
+            //{
+            //    options.KnownProxies.Add(IPAddress.Parse("130.225.57.27"));
+            //});
+
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy(name: SignalRCors,
+            //                            builder =>
+            //                            {
+            //                                builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            //                                //builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "knox-master01.srv.aau.dk" 
+            //                                //|| new Uri(origin).Host == "localhost").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+            //                            });
+            //});
+
             services.AddControllers();
 
             services.AddControllers();
@@ -90,9 +99,10 @@ namespace Access_API
                 });
             }
 
-            //app.UsePathBase(Microsoft.AspNetCore.Http.PathString.FromUriComponent("/api"));
-
-            //app.UseHttpsRedirection();
+            //app.UseForwardedHeaders(new ForwardedHeadersOptions
+            //{
+            //    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            //});
 
             app.UseRouting();
 
@@ -101,7 +111,7 @@ namespace Access_API
             app.UseAuthorization();
 
             app.UseCors(SignalRCors);
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
