@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Access_API
+﻿namespace Access_API
 {
     public static class Urls
     {
-        public static string fileTransferUrl = "http://knox-master01.srv.aau.dk/fileAPI";
-        public static string searchUrl = "http://knox-master01.srv.aau.dk/searchAPI";
+        public const string FileTransferUrl = "http://knox-master01.srv.aau.dk/fileAPI";
+        public const string SearchUrl = "http://knox-master01.srv.aau.dk/searchAPI";
+        public const string VaUrl = "http://knox-master01.srv.aau.dk/virtualAssistantAPI";
+        public const string WordCountUrl = "http://knox-master01.srv.aau.dk/wordCountAPI";
     }
 }
