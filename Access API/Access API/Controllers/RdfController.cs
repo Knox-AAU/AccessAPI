@@ -1,4 +1,4 @@
-﻿using System.Net;
+﻿using Access_API.BLL;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Access_API.Controllers
@@ -14,8 +14,8 @@ namespace Access_API.Controllers
         {
             const string query = "SELECT * WHERE { ?a ?b ?c }";
 
-            HttpWebResponse response = Drivers.HttpRequest.GetRequest($"{Urls.RdfUrl}/{query}");
-
+            DatabasePingBLL bll = new DatabasePingBLL();
+            var response = bll.PingDatabase(query);
             return StatusCode((int)response.StatusCode);
         }
     }
