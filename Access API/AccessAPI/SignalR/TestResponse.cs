@@ -7,7 +7,6 @@ namespace Access_API.SignalR
     class SuggestorSimulator
     {
         List<string> randomWords = new List<string>() { "hvem", "kan", "test", "NEEEJ", "Hej", "Måske" };
-        
         public TestResponse GenerateTestResponse(TestRequest request)
         {
             TestResponse tr = new TestResponse();
