@@ -14,7 +14,7 @@ namespace Access_API.Controllers
     [ApiExplorerSettings(GroupName = "Knox search endpoints")]
     public class SearchController : ControllerBase
     {
-        BLL.SearchBLL sb = new BLL.SearchBLL();
+        readonly BLL.SearchBLL sb = new();
         [HttpGet]       // 127.0.0.1:8081/api/search?input=test&sources=Nordjyske,Grundfoss
         public string Get([FromQuery] string input, [FromQuery] string sources)
         {
@@ -24,7 +24,7 @@ namespace Access_API.Controllers
                 result = JsonConvert.SerializeObject(sb.searchBLL(input, sources));
                 HttpContext.Response.StatusCode = 200;
             }
-            catch (Exception ex)
+            catch
             {
                 HttpContext.Response.StatusCode = 500;
             }

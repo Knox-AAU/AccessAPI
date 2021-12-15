@@ -8,19 +8,21 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.HttpOverrides;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Access_API.Middleware;
+using Access_API.SignalR;
 
 namespace Access_API
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
+        readonly string SignalRCors = "_SignalRCors";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,17 +33,21 @@ namespace Access_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
 
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      builder.WithOrigins("http://localhost:8080").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-                                  });
+                options.AddPolicy(name: SignalRCors,
+                                        builder =>
+                                        {
+                                            builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "knox-master01.srv.aau.dk"
+                                            || new Uri(origin).Host == "localhost").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                                        });
             });
 
-            // services.AddResponseCaching();
             services.AddControllers();
 
             services.AddControllers();
@@ -87,21 +93,18 @@ namespace Access_API
                 });
             }
 
-            //app.UsePathBase(Microsoft.AspNetCore.Http.PathString.FromUriComponent("/api"));
-
-            //app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseMiddleware<MiddlewareLogger>();
 
             app.UseAuthorization();
 
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(SignalRCors);
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHandler>("/suggestorHub");
             });
         }
     }

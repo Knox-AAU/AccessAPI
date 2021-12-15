@@ -21,8 +21,7 @@ namespace Access_API
                  .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://localhost:8081/");
-
+                    webBuilder.UseUrls("http://*:8081/"); //VERY IMPORTEN TO USE * TO ALLOW CONNECTIONS FROM OTHER SERVERS INSTEAD OF LOCALHOST!!!!!
                 });
     }
 }

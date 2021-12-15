@@ -15,7 +15,7 @@ namespace Access_API.Controllers
     [ApiExplorerSettings(GroupName = "Knox Virtual Assistant")]
     public class VirtualAssistantController : Controller
     {
-        VABLL VAb = new VABLL();
+        readonly VABLL VAb = new();
 
         [HttpGet]
         [Route("node")]
@@ -27,7 +27,7 @@ namespace Access_API.Controllers
                 result = JsonConvert.SerializeObject(VAb.vaBLL_getNode(id).response);
                 HttpContext.Response.StatusCode = 200;
             }
-            catch (Exception ex)
+            catch
             {
                 HttpContext.Response.StatusCode = 500;
             }
@@ -45,7 +45,7 @@ namespace Access_API.Controllers
                 result = JsonConvert.SerializeObject(VAb.vaBLL_getNodes(id).response);
                 HttpContext.Response.StatusCode = 200;
             }
-            catch (Exception ex)
+            catch
             {
                 HttpContext.Response.StatusCode = 500;
             }

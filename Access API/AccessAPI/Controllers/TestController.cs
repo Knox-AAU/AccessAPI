@@ -13,7 +13,7 @@ namespace Access_API.Controllers
     public class TestController : ControllerBase
     {
         [HttpGet]       // 127.0.0.1:8081/api/search?input=test&sources=Nordjyske,Grundfoss
-        public IActionResult Get(int id)
+        public IActionResult Get()
         {
             byte[] bytes = System.IO.File.ReadAllBytes("D:\\solutions.pdf");
             Stream stream = new MemoryStream(bytes);
@@ -25,7 +25,7 @@ namespace Access_API.Controllers
         public void WaitInMs(int milliseconds)
         {
             DateTime dateTime = DateTime.UtcNow;
-            TimeSpan ts = new TimeSpan(0, 0, 0, 0, milliseconds);
+            TimeSpan ts = new(0, 0, 0, 0, milliseconds);
             while (DateTime.UtcNow - dateTime <= ts) ;
             HttpContext.Response.StatusCode = 200;
         }
