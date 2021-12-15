@@ -21,7 +21,7 @@ namespace Access_API.SignalR
 
         public async Task SendGroupMessage(string groupName, string messageTag, string message)
         {
-            switch(messageTag)
+            switch (messageTag)
             {
                 case "status":
                     {

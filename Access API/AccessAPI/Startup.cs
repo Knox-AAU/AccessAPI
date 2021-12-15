@@ -100,7 +100,7 @@ namespace Access_API
             app.UseAuthorization();
 
             app.UseCors(SignalRCors);
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

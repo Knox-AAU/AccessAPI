@@ -12,18 +12,18 @@ namespace Access_API.SignalR
             TestResponse tr = new TestResponse();
             tr.ResultLength = request.MaxResults;
 
-            for(int i = 0; i< request.MaxResults ; i++)
+            for (int i = 0; i < request.MaxResults; i++)
             {
                 string s = string.Empty;
                 int wordCnt = new Random().Next(1, 8);
 
-                for(int j = 0; j < wordCnt ; j++)
+                for (int j = 0; j < wordCnt; j++)
                 {
-                    s += $"{randomWords[new Random().Next(0, randomWords.Count- 1)]} ";
+                    s += $"{randomWords[new Random().Next(0, randomWords.Count - 1)]} ";
                 }
                 s = s.Trim();
 
-                tr.Results.Add(new Result() {Sentence = s, Score = (float)new Random().NextDouble()*100 });
+                tr.Results.Add(new Result() { Sentence = s, Score = (float)new Random().NextDouble() * 100 });
             }
 
             return tr;
@@ -65,5 +65,4 @@ namespace Access_API.SignalR
             MaxResults = 5;
         }
     }
-
 }
