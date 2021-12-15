@@ -15,7 +15,7 @@ namespace Access_API.Controllers
     [ApiExplorerSettings(GroupName = "Knox Virtual Assistant")]
     public class VirtualAssistantController : Controller
     {
-        VABLL VAb = new VABLL();
+        readonly VABLL VAb = new();
 
         [HttpGet]
         [Route("node")]

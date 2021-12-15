@@ -13,7 +13,7 @@ namespace Access_API.Controllers
     [ApiExplorerSettings(GroupName = "Knox filetransfer endpoints")]
     public class FileController : Controller
     {
-        FileBLL fileBLL = new FileBLL();
+        readonly FileBLL fileBLL = new();
 
         [HttpGet]
         public IActionResult Get([FromQuery] int id)

@@ -74,7 +74,7 @@ namespace Access_API.SignalR
         }
 
         //Called upon clients connects
-        public async Task AddToGroup(string groupName)
+        public async void AddToGroup(string groupName)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
             await Clients.Client(suggestorClientId).SendAsync("JoinGroup", groupName);
@@ -82,7 +82,7 @@ namespace Access_API.SignalR
         }
 
         //Called upon clients disconnects
-        public async Task RemoveFromGroup(string groupName)
+        public async void RemoveFromGroup(string groupName)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
             await Clients.Client(suggestorClientId).SendAsync("LeaveGroup", groupName);
