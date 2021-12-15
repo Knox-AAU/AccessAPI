@@ -23,7 +23,7 @@ namespace Access_API.Controllers
                 Stream stream = new MemoryStream(fileBLL.fileBLL(id).ToArray());
                 return new FileStreamResult(stream, "application/pdf");
             }
-            catch (Exception ex)
+            catch
             {
                 return StatusCode(500);
             }

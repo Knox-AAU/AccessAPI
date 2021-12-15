@@ -13,7 +13,7 @@ namespace Access_API.SignalR
     {
         static string suggestorClientId = "";
 
-        public async Task SuggesterJoin()
+        public void SuggesterJoin()
         {
             suggestorClientId = Context.ConnectionId;
             Debug.WriteLine("Here is the suggesterClientid: " + suggestorClientId);
@@ -87,11 +87,6 @@ namespace Access_API.SignalR
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
             await Clients.Client(suggestorClientId).SendAsync("LeaveGroup", groupName);
             Debug.WriteLine($"Remove {Context.ConnectionId} from group: {groupName}");
-        }
-
-        public async Task ReceiveSuggestions(string a)
-        {
-            Debug.WriteLine("suggestion recieved " + a);
         }
 
         public override Task OnConnectedAsync()
