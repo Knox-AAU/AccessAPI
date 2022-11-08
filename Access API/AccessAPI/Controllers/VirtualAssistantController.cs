@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Net.Mime;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Access_API.BLL;
 
@@ -24,7 +18,7 @@ namespace Access_API.Controllers
             string result = string.Empty;
             try
             {
-                result = JsonConvert.SerializeObject(VAb.vaBLL_getNode(id).response);
+                result = JsonConvert.SerializeObject(VAb.vaBLL_getNode(id).Response);
                 HttpContext.Response.StatusCode = 200;
             }
             catch
@@ -42,7 +36,7 @@ namespace Access_API.Controllers
             string result = string.Empty;
             try
             {
-                result = JsonConvert.SerializeObject(VAb.vaBLL_getNodes(id).response);
+                result = JsonConvert.SerializeObject(VAb.vaBLL_getNodes(id).Response);
                 HttpContext.Response.StatusCode = 200;
             }
             catch

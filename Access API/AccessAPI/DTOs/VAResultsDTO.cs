@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Access_API
 {
     public class VAResultsDTO
     {
-        public List<VAResultDTO> result; //TODO Update with proper response types
+        public List<VAResultDTO> Result; // TODO Update with proper response types
     }
 }
