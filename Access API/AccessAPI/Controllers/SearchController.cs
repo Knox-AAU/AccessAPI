@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Mime;
+using Access_API.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,9 +24,9 @@ namespace Access_API.Controllers
             {
                 return Ok(_sb.SearchBll(words, sourceId, author, categoryId, beforeDate, afterDate));
             }
-            catch (Exception e)
+            catch (SearchQueryResponseException e)
             {
-                return Problem(e.Message);
+                return Problem(e.ErrorResponse.Title);
             }
         }
     }
