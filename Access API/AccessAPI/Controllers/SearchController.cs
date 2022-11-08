@@ -28,6 +28,10 @@ namespace Access_API.Controllers
             {
                 return Problem(e.ErrorResponse.Title);
             }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
         }
     }
 }
