@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
@@ -11,12 +9,12 @@ namespace Access_API.SignalR
 
     public class SignalRHandler : Hub
     {
-        static string suggestorClientId = "";
+        static string _suggestorClientId = "";
 
         public void SuggesterJoin()
         {
-            suggestorClientId = Context.ConnectionId;
-            Debug.WriteLine("Here is the suggesterClientid: " + suggestorClientId);
+            _suggestorClientId = Context.ConnectionId;
+            Debug.WriteLine("Here is the suggesterClientId: " + _suggestorClientId);
         }
 
         public async Task SendGroupMessage(string groupName, string messageTag, string message)
@@ -30,7 +28,7 @@ namespace Access_API.SignalR
                     }
                 case "suggestionRequest":
                     {
-                        await Clients.Group(suggestorClientId).SendAsync("suggestionRequest", groupName, message);
+                        await Clients.Group(_suggestorClientId).SendAsync("suggestionRequest", groupName, message);
                         break;
                     }
                 case "suggestionResponse":
@@ -46,9 +44,9 @@ namespace Access_API.SignalR
                                 JsonConvert.DeserializeObject<TestRequest>(message))));
                         break;
                     }
-                case "evalutateSentence":
+                case "evaluateSentence":
                     {
-                        await Clients.Group(suggestorClientId).SendAsync("evaluateSentence", message);
+                        await Clients.Group(_suggestorClientId).SendAsync("evaluateSentence", message);
                         break;
                     }
                 default:
@@ -77,7 +75,7 @@ namespace Access_API.SignalR
         public async void AddToGroup(string groupName)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
-            await Clients.Client(suggestorClientId).SendAsync("JoinGroup", groupName);
+            await Clients.Client(_suggestorClientId).SendAsync("JoinGroup", groupName);
             Debug.WriteLine($"Added {Context.ConnectionId} to group: {groupName}");
         }
 
@@ -85,7 +83,7 @@ namespace Access_API.SignalR
         public async void RemoveFromGroup(string groupName)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
-            await Clients.Client(suggestorClientId).SendAsync("LeaveGroup", groupName);
+            await Clients.Client(_suggestorClientId).SendAsync("LeaveGroup", groupName);
             Debug.WriteLine($"Remove {Context.ConnectionId} from group: {groupName}");
         }
 

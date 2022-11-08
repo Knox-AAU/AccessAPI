@@ -5,7 +5,7 @@ namespace Access_API.Controllers
 {
     [Route("api/document_data")]
     [ApiController]
-    [ApiExplorerSettings(GroupName = "Knox DocumentData endpoints")]
+    [ApiExplorerSettings(GroupName = "Knox DocumentDataAPI endpoints")]
     public sealed class DocumentDataController : Controller
     {
         [HttpGet]

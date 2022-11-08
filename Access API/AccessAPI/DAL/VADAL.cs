@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using Newtonsoft.Json;
+﻿using System.Net;
 using System.Text;
 
 
@@ -20,7 +15,7 @@ namespace Access_API.DAL
                 json = sr.ReadToEnd();
             }
             VAResultDTO vaRes = new();
-            vaRes.response = json.ToString();
+            vaRes.Response = json.ToString();
             return vaRes;
         }
     }

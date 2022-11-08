@@ -1,11 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Access_API
 {
@@ -21,7 +15,7 @@ namespace Access_API
                  .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://*:8081/"); //VERY IMPORTEN TO USE * TO ALLOW CONNECTIONS FROM OTHER SERVERS INSTEAD OF LOCALHOST!!!!!
+                    webBuilder.UseUrls("http://*:8081/"); //VERY IMPORTANT TO USE * TO ALLOW CONNECTIONS FROM OTHER SERVERS INSTEAD OF LOCALHOST!!!!!
                 });
     }
 }
