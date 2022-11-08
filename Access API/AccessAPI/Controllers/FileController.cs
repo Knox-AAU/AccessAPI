@@ -6,7 +6,7 @@ namespace Access_API.Controllers
 {
     [Route("api/getpdf")]
     [ApiController]
-    [ApiExplorerSettings(GroupName = "Knox filetransfer endpoints")]
+    [ApiExplorerSettings(GroupName = "Knox file transfer endpoints")]
     public class FileController : Controller
     {
         readonly FileBLL _fileBll = new();

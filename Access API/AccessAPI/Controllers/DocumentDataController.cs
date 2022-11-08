@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Access_API.Controllers
 {
-    [Route("api/document_data")]
+    [Route("api/document-data-api")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "Knox DocumentDataAPI endpoints")]
     public sealed class DocumentDataController : Controller
