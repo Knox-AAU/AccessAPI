@@ -4,6 +4,6 @@
     {
         public string Title;
         public int Id;
-        public double Score;
+        public double Relevance;
     }
 }
