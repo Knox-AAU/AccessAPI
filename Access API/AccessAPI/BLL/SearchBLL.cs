@@ -12,8 +12,8 @@ namespace Access_API.BLL
             if (sourceId is not null) url += $"&sourceId={sourceId}";
             if (author is not null) url += $"&author={author}";
             if (categoryId is not null) url += $"&categoryId={categoryId}";
-            if (beforeDate is not null) url += $"&beforeDate={beforeDate}";
-            if (afterDate is not null) url += $"&afterDate={afterDate}";
+            if (beforeDate is not null) url += $"&beforeDate={beforeDate:o}";
+            if (afterDate is not null) url += $"&afterDate={afterDate:o}";
 
             SearchDAL dal = new SearchDAL();
 
