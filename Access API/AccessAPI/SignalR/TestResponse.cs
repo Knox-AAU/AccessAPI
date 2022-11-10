@@ -7,10 +7,13 @@ namespace Access_API.SignalR
     class SuggestorSimulator
     {
         List<string> randomWords = new List<string>() { "hvem", "kan", "test", "NEEEJ", "Hej", "Måske" };
-        public TestResponse GenerateTestResponse(TestRequest? request)
+        public TestResponse GenerateTestResponse(TestRequest request)
         {
-            TestResponse tr = new TestResponse();
-            tr.ResultLength = request.MaxResults;
+            if (request == null) throw new ArgumentNullException(nameof(request));
+            TestResponse tr = new TestResponse
+            {
+                ResultLength = request.MaxResults
+            };
 
             for (int i = 0; i < request.MaxResults; i++)
             {
