@@ -2,7 +2,7 @@
 {
     public class SearchResultDTO
     {
-        public string Title;
+        public string? Title;
         public int Id;
         public double Relevance;
     }

@@ -2,6 +2,6 @@
 {
     public class VAResultDTO
     {
-        public string Response; // TODO update this with whatever the response is
+        public string? Response; // TODO update this with whatever the response is
     }
 }

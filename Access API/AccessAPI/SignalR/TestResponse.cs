@@ -7,7 +7,7 @@ namespace Access_API.SignalR
     class SuggestorSimulator
     {
         List<string> randomWords = new List<string>() { "hvem", "kan", "test", "NEEEJ", "Hej", "Måske" };
-        public TestResponse GenerateTestResponse(TestRequest request)
+        public TestResponse GenerateTestResponse(TestRequest? request)
         {
             TestResponse tr = new TestResponse();
             tr.ResultLength = request.MaxResults;
@@ -48,7 +48,7 @@ namespace Access_API.SignalR
     }
     class Result
     {
-        public string Sentence { get; set; }
+        public string? Sentence { get; set; }
         public float Score { get; set; }
     }
 

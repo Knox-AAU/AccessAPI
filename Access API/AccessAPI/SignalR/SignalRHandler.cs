@@ -94,7 +94,7 @@ namespace Access_API.SignalR
             return base.OnConnectedAsync();
         }
 
-        public override Task OnDisconnectedAsync(Exception exception)
+        public override Task OnDisconnectedAsync(Exception? exception)
         {
             Debug.WriteLine($"Client {Context.ConnectionId} left the HUB");
             RemoveFromGroup(Context.ConnectionId);
