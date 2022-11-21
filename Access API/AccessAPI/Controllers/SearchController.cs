@@ -31,8 +31,10 @@ namespace Access_API.Controllers
         [HttpGet] // 127.0.0.1:8081/api/search?words=test&sourceId=1&author=bob&categoryId=2
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<string> Get([FromQuery] string words, [FromQuery] List<long>? sourceIds, [FromQuery] List<string>? authors,
-            [FromQuery] List<int>? categoryIds, [FromQuery] DateTime? beforeDate, [FromQuery] DateTime? afterDate, int? limit, int? offset)
+        public ActionResult<string> Get([FromQuery] string words, [FromQuery] List<long> sourceIds,
+            [FromQuery] List<string> authors,
+            [FromQuery] List<int> categoryIds, DateTime? beforeDate, DateTime? afterDate,
+            int? limit, int? offset)
         {
             try
             {

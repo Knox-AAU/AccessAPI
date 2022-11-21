@@ -6,13 +6,13 @@ namespace Access_API.BLL
 {
     public class SearchBLL
     {
-        public string SearchBll(string words, List<long>? sourceIds, List<string>? authors, List<int>? categoryId,
+        public string SearchBll(string words, List<long> sourceIds, List<string> authors, List<int> categoryIds,
             DateTime? beforeDate, DateTime? afterDate, int? limit, int? offset)
         {
             string url = Urls.SearchUrl + $"/search?words={words}";
-            if (sourceIds is not null) url += $"&sourceId={sourceIds}";
-            if (authors is not null) url += $"&author={authors}";
-            if (categoryId is not null) url += $"&categoryId={categoryId}";
+            foreach (long sourceId in sourceIds) url += $"&sourceIds={sourceId}"; // Skips if list is empty
+            foreach (string author in authors) url += $"&authors={author}"; // Skips if list is empty
+            foreach (int categoryId in categoryIds) url += $"&categoryIds={categoryId}"; // Skips if list is empty
             if (beforeDate is not null) url += $"&beforeDate={beforeDate:o}";
             if (afterDate is not null) url += $"&afterDate={afterDate:o}";
             if (limit is not null) url += $"&limit={limit}";
