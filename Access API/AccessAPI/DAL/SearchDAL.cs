@@ -9,7 +9,7 @@ namespace Access_API.DAL
 {
     public class SearchDAL
     {
-        public string GetSearchResults(string url)
+        public string GetResults(string url)
         {
             string json = String.Empty;
             HttpWebResponse response = Drivers.HttpRequest.GetRequest(url);
