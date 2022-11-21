@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Mime;
 using Access_API.Exceptions;
 using Microsoft.AspNetCore.Http;
@@ -25,47 +24,7 @@ namespace Access_API.Controllers
             {
                 return Ok(_sb.SearchBll(words, sourceId, author, categoryId, beforeDate, afterDate));
             }
-            catch (SearchQueryResponseException e)
-            {
-                return Problem(e.ErrorResponse.Title);
-            }
-            catch (Exception e)
-            {
-                return Problem(e.Message);
-            }
-        }
-
-        [HttpGet] // 127.0.0.1:8081/api/search/categories
-        [Route("/categories")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<List<string>> GetAllCategories([FromQuery] int? limit, [FromQuery] int? offset)
-        {
-            try
-            {
-                return Ok(_sb.CategoriesBll(limit, offset));
-            }
-            catch (SearchQueryResponseException e)
-            {
-                return Problem(e.ErrorResponse.Title);
-            }
-            catch (Exception e)
-            {
-                return Problem(e.Message);
-            }
-        }
-        
-        [HttpGet] // 127.0.0.1:8081/api/search/sources
-        [Route("/sources")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<List<string>> GetAllSources([FromQuery] int? limit, [FromQuery] int? offset)
-        {
-            try
-            {
-                return Ok(_sb.SourcesBll(limit, offset));
-            }
-            catch (SearchQueryResponseException e)
+            catch (ApiResponseException e)
             {
                 return Problem(e.ErrorResponse.Title);
             }

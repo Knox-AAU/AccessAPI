@@ -2,9 +2,9 @@
 
 namespace Access_API.Exceptions
 {
-    public class SearchQueryResponseException : Exception
+    public class ApiResponseException : Exception
     {
-        public SearchQueryResponseException(ProblemDetailsDTO errorResponse)
+        public ApiResponseException(ProblemDetailsDTO errorResponse)
         {
             ErrorResponse = errorResponse;
         }

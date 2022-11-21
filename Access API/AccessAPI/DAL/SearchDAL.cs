@@ -22,7 +22,7 @@ namespace Access_API.DAL
                 if (response.StatusCode is HttpStatusCode.InternalServerError)
                 {
                     ProblemDetailsDTO error = JsonConvert.DeserializeObject<ProblemDetailsDTO>(json)!;
-                    throw new SearchQueryResponseException(error);
+                    throw new ApiResponseException(error);
                 }
             }
             else if (response.StatusCode is HttpStatusCode.NotFound)
