@@ -45,6 +45,10 @@ namespace Access_API.Controllers
             {
                 return Ok(_sb.CategoriesBll(limit, offset));
             }
+            catch (SearchQueryResponseException e)
+            {
+                return Problem(e.ErrorResponse.Title);
+            }
             catch (Exception e)
             {
                 return Problem(e.Message);
@@ -60,6 +64,10 @@ namespace Access_API.Controllers
             try
             {
                 return Ok(_sb.SourcesBll(limit, offset));
+            }
+            catch (SearchQueryResponseException e)
+            {
+                return Problem(e.ErrorResponse.Title);
             }
             catch (Exception e)
             {
