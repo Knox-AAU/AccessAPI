@@ -12,7 +12,7 @@ namespace Access_API.Controllers
     [ApiExplorerSettings(GroupName = "Knox DocumentDataAPI endpoints")]
     public sealed class DocumentDataController : Controller
     {
-        readonly BLL.SearchBLL _sb = new();
+        readonly BLL.DocumentDataBLL _ddbll = new();
         
         /// <summary>
         /// Probes the DocumentDataAPI to check if a connection can be established to the database.
@@ -28,6 +28,13 @@ namespace Access_API.Controllers
             return StatusCode((int)response.StatusCode);
         }
         
+        /// <summary>
+        /// Forwards a query to the DocumentDataAPI, which gets a list of categories.
+        /// </summary>
+        /// <param name="limit">The maximum number of rows to get.</param>
+        /// <param name="offset">The number of rows to skip (previous offset + previous limit).</param>
+        /// <response code="200">Success: A JSON formatted response, containing categories from the Document Data Database.</response>
+        /// <response code="500">Internal Server Error: A <see cref="ProblemDetails"/> describing the error.</response>
         [HttpGet] // 127.0.0.1:8081/api/document-data-api/categories
         [Route("/categories")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -36,7 +43,7 @@ namespace Access_API.Controllers
         {
             try
             {
-                return Ok(_sb.CategoriesBll(limit, offset));
+                return Ok(_ddbll.CategoriesBll(limit, offset));
             }
             catch (ApiResponseException e)
             {
@@ -48,6 +55,13 @@ namespace Access_API.Controllers
             }
         }
         
+        /// <summary>
+        /// Forwards a query to the DocumentDataAPI, which gets a list of sources.
+        /// </summary>
+        /// <param name="limit">The maximum number of rows to get.</param>
+        /// <param name="offset">The number of rows to skip (previous offset + previous limit).</param>
+        /// <response code="200">Success: A JSON formatted response, containing sources from the Document Data Database.</response>
+        /// <response code="500">Internal Server Error: A <see cref="ProblemDetails"/> describing the error.</response>
         [HttpGet] // 127.0.0.1:8081/api/document-data-api/sources
         [Route("/sources")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -56,7 +70,7 @@ namespace Access_API.Controllers
         {
             try
             {
-                return Ok(_sb.SourcesBll(limit, offset));
+                return Ok(_ddbll.SourcesBll(limit, offset));
             }
             catch (ApiResponseException e)
             {
