@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Access_API.DAL
 {
-    public class SearchDAL
+    public class DocumentDataDAL
     {
         public string GetResults(string url)
         {

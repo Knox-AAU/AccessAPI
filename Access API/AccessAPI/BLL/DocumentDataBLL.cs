@@ -10,7 +10,7 @@ namespace Access_API.BLL
             if (limit is not null) url += $"&limit={limit}";
             if (offset is not null) url += $"&offset={offset}";
 
-            SearchDAL dal = new SearchDAL();
+            DocumentDataDAL dal = new DocumentDataDAL();
             return dal.GetResults(url);
         }
         
@@ -20,7 +20,7 @@ namespace Access_API.BLL
             if (limit is not null) url += $"&limit={limit}";
             if (offset is not null) url += $"&offset={offset}";
             
-            SearchDAL dal = new SearchDAL();
+            DocumentDataDAL dal = new DocumentDataDAL();
             return dal.GetResults(url);
         }
     }
