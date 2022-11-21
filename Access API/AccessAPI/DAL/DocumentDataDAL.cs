@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Access_API.DAL
 {
-    public class SearchDAL
+    public class DocumentDataDAL
     {
-        public string GetSearchResults(string url)
+        public string GetResults(string url)
         {
             string json = String.Empty;
             HttpWebResponse response = Drivers.HttpRequest.GetRequest(url);
@@ -22,7 +22,7 @@ namespace Access_API.DAL
                 if (response.StatusCode is HttpStatusCode.InternalServerError)
                 {
                     ProblemDetailsDTO error = JsonConvert.DeserializeObject<ProblemDetailsDTO>(json)!;
-                    throw new SearchQueryResponseException(error);
+                    throw new ApiResponseException(error);
                 }
             }
             else if (response.StatusCode is HttpStatusCode.NotFound)
