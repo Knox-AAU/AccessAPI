@@ -24,7 +24,7 @@ namespace Access_API.Controllers
         {
             HttpWebResponse response = Drivers.HttpRequest.GetRequest($"{Urls.DocumentDataUrl}/status");
 
-            return StatusCode((int) response.StatusCode);
+            return StatusCode((int)response.StatusCode);
         }
         /// <summary>
         /// Forwards a query to the DocumentDataAPI, which gets a list of categories.
