@@ -9,7 +9,7 @@ namespace Access_API.BLL
         public string SearchBll(string words, List<long> sourceIds, List<string> authors, List<int> categoryIds,
             DateTime? beforeDate, DateTime? afterDate, int? limit, int? offset)
         {
-            string url = Urls.SearchUrl + $"/search?words={words}";
+            string url = Urls.DocumentDataUrl + $"/search?words={words}";
             foreach (long sourceId in sourceIds) url += $"&sourceIds={sourceId}"; // Skips if list is empty
             foreach (string author in authors) url += $"&authors={author}"; // Skips if list is empty
             foreach (int categoryId in categoryIds) url += $"&categoryIds={categoryId}"; // Skips if list is empty
