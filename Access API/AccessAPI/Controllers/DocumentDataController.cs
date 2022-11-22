@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Access_API.Controllers
 {
-    [Route("api/document-data-api")]
+    [Route("api/document-data")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "Knox DocumentDataAPI endpoints")]
     public sealed class DocumentDataController : Controller
@@ -19,7 +19,7 @@ namespace Access_API.Controllers
         /// <response code="200">Success: The database is reachable.</response>
         /// <response code="500">Internal Server Error: A <see cref="ProblemDetails"/> describing the error.</response>
         [HttpGet]
-        [Route("/status")]
+        [Route("status")]
         public IActionResult GetStatus()
         {
             HttpWebResponse response = Drivers.HttpRequest.GetRequest($"{Urls.DocumentDataUrl}/status");
@@ -34,7 +34,7 @@ namespace Access_API.Controllers
         /// <response code="200">Success: A JSON formatted response, containing categories from the Document Data Database.</response>
         /// <response code="500">Internal Server Error: A <see cref="ProblemDetails"/> describing the error.</response>
         [HttpGet] // 127.0.0.1:8081/api/document-data-api/categories
-        [Route("/categories")]
+        [Route("categories")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<List<string>> GetAllCategories([FromQuery] int? limit, [FromQuery] int? offset)
@@ -60,7 +60,7 @@ namespace Access_API.Controllers
         /// <response code="200">Success: A JSON formatted response, containing sources from the Document Data Database.</response>
         /// <response code="500">Internal Server Error: A <see cref="ProblemDetails"/> describing the error.</response>
         [HttpGet] // 127.0.0.1:8081/api/document-data-api/sources
-        [Route("/sources")]
+        [Route("sources")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<List<string>> GetAllSources([FromQuery] int? limit, [FromQuery] int? offset)
