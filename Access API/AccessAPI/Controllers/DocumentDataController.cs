@@ -33,11 +33,11 @@ namespace Access_API.Controllers
         /// <param name="offset">The number of rows to skip (previous offset + previous limit).</param>
         /// <response code="200">Success: A JSON formatted response, containing categories from the Document Data Database.</response>
         /// <response code="500">Internal Server Error: A <see cref="ProblemDetails"/> describing the error.</response>
-        [HttpGet] // 127.0.0.1:8081/api/document-data-api/categories
+        [HttpGet] // 127.0.0.1:8081/api/document-data/categories
         [Route("categories")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<List<string>> GetAllCategories([FromQuery] int? limit, [FromQuery] int? offset)
+        public ActionResult<List<string>> GetAllCategories(int? limit, int? offset)
         {
             try
             {
@@ -59,11 +59,11 @@ namespace Access_API.Controllers
         /// <param name="offset">The number of rows to skip (previous offset + previous limit).</param>
         /// <response code="200">Success: A JSON formatted response, containing sources from the Document Data Database.</response>
         /// <response code="500">Internal Server Error: A <see cref="ProblemDetails"/> describing the error.</response>
-        [HttpGet] // 127.0.0.1:8081/api/document-data-api/sources
+        [HttpGet] // 127.0.0.1:8081/api/document-data/sources
         [Route("sources")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<List<string>> GetAllSources([FromQuery] int? limit, [FromQuery] int? offset)
+        public ActionResult<List<string>> GetAllSources(int? limit, int? offset)
         {
             try
             {
