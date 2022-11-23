@@ -4,6 +4,14 @@ namespace Access_API.BLL
 {
     public class DocumentDataBLL
     {
+        public string AuthorsBll()
+        {
+            string url = Urls.DocumentDataUrl + "/documents/authors";
+
+            DocumentDataDAL dal = new DocumentDataDAL();
+            return dal.GetResults(url);
+        }
+
         public string CategoriesBll(int? limit, int? offset)
         {
             string url = Urls.DocumentDataUrl + "/categories?";
