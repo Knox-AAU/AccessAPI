@@ -13,6 +13,7 @@ namespace Access_API.Controllers
     public sealed class DocumentDataController : Controller
     {
         readonly BLL.DocumentDataBLL _ddbll = new();
+
         /// <summary>
         /// Probes the DocumentDataAPI to check if a connection can be established to the database.
         /// </summary>
@@ -26,6 +27,32 @@ namespace Access_API.Controllers
 
             return StatusCode((int)response.StatusCode);
         }
+
+        /// <summary>
+        /// Forwards a query to the DocumentDataAPI, which gets a list of authors of all documents.
+        /// </summary>
+        /// <response code="200">Success: A JSON formatted response, containing authors of documents from the Document Data Database.</response>
+        /// <response code="500">Internal Server Error: A <see cref="ProblemDetails"/> describing the error.</response>
+        [HttpGet] // 127.0.0.1:8081/api/document-data/authors
+        [Route("authors")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<List<string>> GetAllAuthors()
+        {
+            try
+            {
+                return Ok(_ddbll.AuthorsBll());
+            }
+            catch (ApiResponseException e)
+            {
+                return Problem(e.ErrorResponse.Title);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+        }
+
         /// <summary>
         /// Forwards a query to the DocumentDataAPI, which gets a list of categories.
         /// </summary>
@@ -52,6 +79,7 @@ namespace Access_API.Controllers
                 return Problem(e.Message);
             }
         }
+
         /// <summary>
         /// Forwards a query to the DocumentDataAPI, which gets a list of sources.
         /// </summary>
