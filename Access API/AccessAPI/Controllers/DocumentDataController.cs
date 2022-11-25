@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Mime;
 using Access_API.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +42,7 @@ namespace Access_API.Controllers
         {
             try
             {
-                return Ok(_ddbll.AuthorsBll());
+                return Content(_ddbll.AuthorsBll(), MediaTypeNames.Application.Json);
             }
             catch (ApiResponseException e)
             {
@@ -68,7 +69,7 @@ namespace Access_API.Controllers
         {
             try
             {
-                return Ok(_ddbll.CategoriesBll(limit, offset));
+                return Content(_ddbll.CategoriesBll(limit, offset), MediaTypeNames.Application.Json);
             }
             catch (ApiResponseException e)
             {
@@ -95,7 +96,7 @@ namespace Access_API.Controllers
         {
             try
             {
-                return Ok(_ddbll.SourcesBll(limit, offset));
+                return Content(_ddbll.SourcesBll(limit, offset), MediaTypeNames.Application.Json);
             }
             catch (ApiResponseException e)
             {
