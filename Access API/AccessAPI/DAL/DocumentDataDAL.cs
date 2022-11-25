@@ -11,7 +11,7 @@ namespace Access_API.DAL
     {
         public string GetResults(string url)
         {
-            string json = String.Empty;
+            string json = "[]";
             HttpWebResponse response = Drivers.HttpRequest.GetRequest(url);
             if (response.StatusCode is HttpStatusCode.OK or HttpStatusCode.InternalServerError)
             {
@@ -24,10 +24,6 @@ namespace Access_API.DAL
                     ProblemDetailsDTO error = JsonConvert.DeserializeObject<ProblemDetailsDTO>(json)!;
                     throw new ApiResponseException(error);
                 }
-            }
-            else if (response.StatusCode is HttpStatusCode.NotFound)
-            {
-                json = "[]";
             }
 
             return json;
