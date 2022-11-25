@@ -38,7 +38,9 @@ namespace Access_API.Controllers
         {
             try
             {
-                return Ok(_sb.SearchBll(words, sourceIds, authors, categoryIds, beforeDate, afterDate, limit, offset));
+                return Content(
+                    _sb.SearchBll(words, sourceIds, authors, categoryIds, beforeDate, afterDate, limit, offset),
+                    MediaTypeNames.Application.Json);
             }
             catch (ApiResponseException e)
             {
