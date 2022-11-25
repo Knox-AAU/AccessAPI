@@ -14,6 +14,7 @@ namespace Access_API
     public class Startup
     {
         readonly string SignalRCors = "_SignalRCors";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,19 +25,17 @@ namespace Access_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSignalR(options =>
-            {
-                options.EnableDetailedErrors = true;
-            });
+            services.AddSignalR(options => { options.EnableDetailedErrors = true; });
 
             services.AddCors(options =>
             {
                 options.AddPolicy(name: SignalRCors,
-                                        builder =>
-                                        {
-                                            builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "knox-master01.srv.aau.dk"
-                                            || new Uri(origin).Host == "localhost").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-                                        });
+                    builder =>
+                    {
+                        builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "knox-master01.srv.aau.dk"
+                                                             || new Uri(origin).Host == "localhost").AllowAnyHeader()
+                            .AllowAnyMethod().AllowCredentials();
+                    });
             });
 
             services.AddControllers();
@@ -86,11 +85,13 @@ namespace Access_API
 
             app.UseRouting();
 
-            app.UseMiddleware<MiddlewareLogger>();
-
-            app.UseAuthorization();
+            // The logger has been commented out for now (this should not be a permanent fix) as it
+            // sometimes throws strange errors during request handling. Perhaps a different logger could solve this.
+            // app.UseMiddleware<MiddlewareLogger>();
 
             app.UseCors(SignalRCors);
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
