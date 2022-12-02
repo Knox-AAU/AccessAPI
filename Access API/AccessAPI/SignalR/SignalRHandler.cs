@@ -38,10 +38,9 @@ namespace Access_API.SignalR
                     }
                 case "suggestionRequestTest":
                     {
-                        await Clients.Group(groupName).SendAsync(
-                            "suggestionResponse",
-                            JsonConvert.SerializeObject(new SuggestorSimulator().GenerateTestResponse(
-                                JsonConvert.DeserializeObject<TestRequest>(message))));
+                        var request = JsonConvert.DeserializeObject<SuggesterRequest>(message)!;
+                        var testData = SuggestorSimulator.GenerateTestResponse(request);
+                        await Clients.Group(groupName).SendAsync("suggestionResponse", JsonConvert.SerializeObject(testData));
                         break;
                     }
                 case "evaluateSentence":
