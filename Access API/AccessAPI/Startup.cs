@@ -29,6 +29,13 @@ namespace Access_API
 
             services.AddCors(options =>
             {
+                options.AddPolicy(name: "UnsafeMode",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
                 options.AddPolicy(name: SignalRCors,
                     builder =>
                     {
