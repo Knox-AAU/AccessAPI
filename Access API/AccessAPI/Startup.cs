@@ -96,7 +96,7 @@ namespace Access_API
             // sometimes throws strange errors during request handling. Perhaps a different logger could solve this.
             // app.UseMiddleware<MiddlewareLogger>();
 
-            app.UseCors("UnsafeMode");
+            app.UseCors(SignalRCors);
 
             app.UseAuthorization();
 
