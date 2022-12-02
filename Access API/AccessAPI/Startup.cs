@@ -29,6 +29,13 @@ namespace Access_API
 
             services.AddCors(options =>
             {
+                options.AddPolicy(name: "UnsafeMode",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
                 options.AddPolicy(name: SignalRCors,
                     builder =>
                     {
@@ -89,7 +96,7 @@ namespace Access_API
             // sometimes throws strange errors during request handling. Perhaps a different logger could solve this.
             // app.UseMiddleware<MiddlewareLogger>();
 
-            app.UseCors(SignalRCors);
+            app.UseCors("UnsafeMode");
 
             app.UseAuthorization();
 
